@@ -1,7 +1,6 @@
 .DS_Store
 
-builds/*
-!builds/web/
+builds
 
 # Godot 4+ specific ignores
 .godot/
