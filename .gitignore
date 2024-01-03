@@ -1,6 +1,8 @@
 .DS_Store
 
-builds
+builds/*
+!builds/web/
+
 # Godot 4+ specific ignores
 .godot/
 *.translation
