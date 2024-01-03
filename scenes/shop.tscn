@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://xrdxackwanbj"]
+
+[ext_resource type="Script" path="res://shop.gd" id="1_7uqxj"]
+
+[node name="Shop" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"BorderOnlyPanel"
+script = ExtResource("1_7uqxj")
+
+[node name="ContentList" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+
+[node name="HeaderMargin" type="MarginContainer" parent="ContentList"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_bottom = 24
+
+[node name="HeaderContent" type="VBoxContainer" parent="ContentList/HeaderMargin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HeaderLabel" type="Label" parent="ContentList/HeaderMargin/HeaderContent"]
+layout_mode = 2
+theme_type_variation = &"LargeLabel"
+text = "SHOP.TITLE"
+horizontal_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="ContentList/HeaderMargin/HeaderContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SubtitleLabel"
+text = "SHOP.SUBTITLE"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ContentList"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ItemsList" type="VBoxContainer" parent="ContentList/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 24

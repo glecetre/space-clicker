@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cksevn81uhid7"]
+
+[ext_resource type="Script" path="res://item.gd" id="1_00khu"]
+
+[resource]
+script = ExtResource("1_00khu")
+code = "shop_improvement"
+display_name = "ITEM.SHOP_IMPROVEMENT.DISPLAY_NAME"
+display_description = "ITEM.SHOP_IMPROVEMENT.DISPLAY_DESCRIPTION"
+repeatable = true
+effects = Array[int]([3])
+potency_scale = {}
+price_scale = {
+1: 300,
+2: 600
+}

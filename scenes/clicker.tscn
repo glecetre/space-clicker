@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw6r3ofpwqok0"]
+
+[ext_resource type="Texture2D" uid="uid://dw88twtb863s4" path="res://assets/planets/Black_hole.png" id="1_iugtr"]
+[ext_resource type="Script" path="res://clicker.gd" id="1_lfpea"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xbwxu"]
+radius = 48.0
+
+[node name="Clicker" type="Area2D"]
+position = Vector2(96, 96)
+script = ExtResource("1_lfpea")
+metadata/_edit_group_ = true
+
+[node name="BlackHoleSprite" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_iugtr")
+
+[node name="ClickAreaCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xbwxu")
+
+[node name="ScaleResetTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="ScaleResetTimer" to="." method="_on_scale_reset_timer_timeout"]

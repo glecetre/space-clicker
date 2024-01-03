@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b5xa32ms3wfe3"]
+
+[ext_resource type="Script" path="res://item.gd" id="1_xnoy1"]
+
+[resource]
+script = ExtResource("1_xnoy1")
+code = "click_booster"
+display_name = "ITEM.CLICK_BOOSTER.DISPLAY_NAME"
+display_description = "ITEM.CLICK_BOOSTER.DISPLAY_DESCRIPTION"
+repeatable = true
+effects = Array[int]([1])
+potency_scale = {
+1: 5,
+2: 10,
+4: 30
+}
+price_scale = {
+1: 15,
+2: 30,
+4: 50
+}

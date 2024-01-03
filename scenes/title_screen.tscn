@@ -1,0 +1,140 @@
+[gd_scene load_steps=6 format=3 uid="uid://sey874d3mmv1"]
+
+[ext_resource type="Script" path="res://title_screen.gd" id="1_i2jum"]
+[ext_resource type="Texture2D" uid="uid://cvnmc2q5omp7f" path="res://assets/title_background.png" id="1_nx7np"]
+[ext_resource type="FontFile" uid="uid://bimwa8abuk44" path="res://assets/fonts/Phased.otf" id="2_8u5qc"]
+[ext_resource type="Texture2D" uid="uid://dw88twtb863s4" path="res://assets/planets/Black_hole.png" id="4_vfwfa"]
+[ext_resource type="Texture2D" uid="uid://dm7fj13ftnbmu" path="res://assets/planets/Ice.png" id="5_adurr"]
+
+[node name="TitleScreen" type="Node"]
+script = ExtResource("1_i2jum")
+
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nx7np")
+metadata/_edit_lock_ = true
+
+[node name="TitleLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 557.0
+offset_top = 167.0
+offset_right = 1363.0
+offset_bottom = 296.0
+theme_override_fonts/font = ExtResource("2_8u5qc")
+theme_override_font_sizes/font_size = 80
+text = "SPACE CLICKER"
+
+[node name="SubtitleLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 557.0
+offset_top = 296.0
+offset_right = 1363.0
+offset_bottom = 334.0
+theme_override_colors/font_color = Color(0.52549, 0.870588, 0.937255, 0.960784)
+theme_override_font_sizes/font_size = 30
+text = "TITLE_SCREEN_TAGLINE"
+horizontal_alignment = 1
+
+[node name="BottomPartContainer" type="VBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -720.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="BottomPartContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomPartContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="InstructionsContainer" type="PanelContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitledPanelContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"PanelTitleLabel"
+text = "TITLE_SCREEN_INSTRUCTIONS_LABEL"
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 80
+
+[node name="BlackHoleInstructions" type="VBoxContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="IllustrationTexture" type="TextureRect" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/BlackHoleInstructions"]
+custom_minimum_size = Vector2(2.08165e-12, 92)
+layout_mode = 2
+texture = ExtResource("4_vfwfa")
+stretch_mode = 5
+
+[node name="InstructionsLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/BlackHoleInstructions"]
+custom_minimum_size = Vector2(300, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 0
+text = "TITLE_SCREEN_INSTRUCTION_BLACK_HOLE"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PlanetsInstructions" type="VBoxContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="IllustrationTexture" type="TextureRect" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/PlanetsInstructions"]
+custom_minimum_size = Vector2(2.08165e-12, 92)
+layout_mode = 2
+texture = ExtResource("5_adurr")
+stretch_mode = 5
+
+[node name="InstructionsLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/PlanetsInstructions"]
+custom_minimum_size = Vector2(300, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 0
+text = "TITLE_SCREEN_INSTRUCTION_DYING_STARS"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ProfitInstructions" type="VBoxContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="IllustrationLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/ProfitInstructions"]
+custom_minimum_size = Vector2(2.08165e-12, 92)
+layout_mode = 2
+theme_type_variation = &"LargeLabel"
+theme_override_colors/font_color = Color(0.52549, 0.870588, 0.937255, 0.960784)
+text = "$$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/ProfitInstructions"]
+custom_minimum_size = Vector2(300, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 0
+text = "TITLE_SCREEN_INSTRUCTION_PROFIT"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="BottomPartContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 2.08165e-12)
+layout_mode = 2
+text = "TITLE_SCREEN_START_BUTTON"
+
+[connection signal="pressed" from="BottomPartContainer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

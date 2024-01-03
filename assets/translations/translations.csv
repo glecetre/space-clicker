@@ -1,0 +1,19 @@
+keys,en,fr
+TITLE_SCREEN_TAGLINE,"In space, no one hears you click","Dans l'espace, personne ne vous entend cliquer"
+TITLE_SCREEN_INSTRUCTIONS_LABEL,Instructions,Instructions
+TITLE_SCREEN_INSTRUCTION_BLACK_HOLE,Click the black hole to extract Space Dols ($$),Clique sur le trou noir pour extraire des Spatiodollars ($$)
+TITLE_SCREEN_INSTRUCTION_DYING_STARS,Extract bonus Space Dols from dying stars,Extrais des Spatiodollars dans les astres mourrants
+TITLE_SCREEN_INSTRUCTION_PROFIT,PROFIT!,LE PROFIT !
+TITLE_SCREEN_START_BUTTON,START GAME,COMMENCER LA PARTIE
+UI.SCORE_LABEL,Space Dols,Spatiodollars
+UI.SCORE_PER_CLICK_LABEL,$$ per click,$$ par clic
+UI.APM_LABEL,Clicks per second," Clics par seconde"
+UI.ACTIVE_ITEMS_LABEL,Active items,Bonus actifs
+SHOP.TITLE,Shop,Boutique
+SHOP.SUBTITLE,Level {level},Niveau {level}
+ITEM.AUTOCLICKER.DISPLAY_NAME,Autoclicker 3000,Autoclicker 3000
+ITEM.AUTOCLICKER.DISPLAY_DESCRIPTION,Tired of clicking? Let the Autoclicker do the job!,Fatigué de cliquer ? Laisse l'autoclicker faire le boulot !
+ITEM.CLICK_BOOSTER.DISPLAY_NAME,Click Booster,Click Booster
+ITEM.CLICK_BOOSTER.DISPLAY_DESCRIPTION,Boost your clicks by {potency}$$.,Augmente tes clics de {potency}$$.
+ITEM.SHOP_IMPROVEMENT.DISPLAY_NAME,Improve Shop,Améliorer la boutique
+ITEM.SHOP_IMPROVEMENT.DISPLAY_DESCRIPTION,Get access to better items in the shop!,Accède à de meilleurs bonus dans la boutique !

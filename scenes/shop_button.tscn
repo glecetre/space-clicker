@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://t10twr7nronx"]
+
+[ext_resource type="Script" path="res://shop_button.gd" id="1_jui0o"]
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 600.0
+offset_bottom = 262.0
+theme_type_variation = &"TitledPanelContainer"
+script = ExtResource("1_jui0o")
+
+[node name="ContentContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_type_variation = &"CondensedVBoxContainer"
+
+[node name="NameLabel" type="Label" parent="ContentContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PanelTitleLabel"
+text = "Item name"
+autowrap_mode = 2
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="ContentContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Item description"
+autowrap_mode = 2
+
+[node name="PriceLabel" type="Label" parent="ContentContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MediumLabel"
+text = "9999"
+horizontal_alignment = 2
+
+[node name="BuyButton" type="Button" parent="ContentContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "BUY	"
+
+[connection signal="pressed" from="ContentContainer/MarginContainer/VBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]
