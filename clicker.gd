@@ -2,7 +2,7 @@ class_name Clicker extends Area2D
 
 
 signal clicked
-signal scale_changed(scale: float)
+signal scale_changed(scale: float, size: Vector2)
 signal area_collided(area: Area2D)
 
 
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 		if scale.x < 1:
 			scale = Vector2.ONE
 		
-		scale_changed.emit(scale.x)
+		scale_changed.emit(scale.x, _get_current_size())
 	
 	if is_scaling_down and scale <= Vector2.ONE:
 		is_scaling_down = false
@@ -44,7 +44,7 @@ func _increase_scale() -> void:
 	
 	if scale.x < max_scale_factor:
 		scale += Vector2(scale_increase_rate, scale_increase_rate)
-		scale_changed.emit(scale.x)
+		scale_changed.emit(scale.x, _get_current_size())
 	
 	if scale.x > max_scale_factor:
 		scale = Vector2(max_scale_factor, max_scale_factor)
@@ -54,3 +54,7 @@ func _increase_scale() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	area_collided.emit(area)
+
+
+func _get_current_size() -> Vector2:
+	return $BlackHoleSprite.get_rect().size * scale

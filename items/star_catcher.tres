@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cad8551770gek"]
+
+[ext_resource type="Script" path="res://item.gd" id="1_1l2ug"]
+
+[resource]
+script = ExtResource("1_1l2ug")
+code = 3
+display_name = "ITEM.STAR_CATCHER.DISPLAY_NAME"
+display_description = "ITEM.STAR_CATCHER.DISPLAY_DESCRIPTION"
+is_repeatable = false
+potency_scale = {
+1: 45,
+2: 60,
+3: 75,
+4: 90
+}
+price_scale = {
+1: 10000,
+2: 15000,
+3: 30000,
+4: 100000
+}
+shop_level_requirement = {
+1: 5,
+2: 6,
+3: 7,
+4: 8
+}

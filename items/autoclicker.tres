@@ -4,12 +4,14 @@
 
 [resource]
 script = ExtResource("1_1280h")
-code = "autoclicker"
+code = 2
 display_name = "ITEM.AUTOCLICKER.DISPLAY_NAME"
 display_description = "ITEM.AUTOCLICKER.DISPLAY_DESCRIPTION"
-repeatable = false
-effects = Array[int]([2])
+is_repeatable = false
 potency_scale = {}
 price_scale = {
-3: 500
+1: 500
+}
+shop_level_requirement = {
+1: 3
 }

@@ -83,7 +83,7 @@ autostart = true
 [connection signal="scale_changed" from="Clicker" to="." method="_on_clicker_scale_changed"]
 [connection signal="item_looted" from="LootSpawner" to="." method="_on_loot_spawner_item_looted"]
 [connection signal="timeout" from="LootSpawner/SpawnTimer" to="LootSpawner" method="_on_spawn_timer_timeout"]
-[connection signal="permanent_item_added" from="GameState" to="." method="_on_game_state_permanent_item_added"]
+[connection signal="permanent_item_changed" from="GameState" to="." method="_on_game_state_permanent_item_changed"]
 [connection signal="score_changed" from="GameState" to="." method="_on_game_state_score_changed"]
 [connection signal="timeout" from="GameState/AutoclickTimer" to="GameState" method="click"]
 [connection signal="timeout" from="APMTimer" to="." method="_on_apm_timer_timeout"]

@@ -1,18 +1,16 @@
-extends Node
 class_name GameState
+extends Node
 
 
 signal score_changed(new_score: int, new_acceleration: int)
 signal acceleration_multiplier_changed(old_multiplier: int, new_multiplier: int)
-signal permanent_item_added(item: Item)
+signal permanent_item_changed(item: Item, level: int)
 
 
 @export var score: int = 0
 @export var acceleration: int = 1
-@export var is_autoclicking: bool = false
-
-
 var acceleration_multiplier: int = 1
+var permanent_items_levels: Dictionary
 
 
 func _init():
@@ -20,15 +18,17 @@ func _init():
 
 
 func purchase_item(item: Item, level: int) -> void:
-	for effect in item.effects:
-		match effect:
-			Item.ItemEffect.ACCELERATION_BOOST:
-				acceleration += item.get_potency(level)
-			Item.ItemEffect.AUTOCLICK:
-				permanent_item_added.emit(item)
-				%AutoclickTimer.start()
-				
-		_buy(item.get_price(level))
+	match item.code:
+		Item.Code.CLICK_BOOSTER:
+			acceleration += item.get_potency(level)
+		Item.Code.AUTOCLICKER:
+			%AutoclickTimer.start()
+	
+	if not item.is_repeatable:
+		permanent_items_levels[item.code] = level
+		permanent_item_changed.emit(item, level)
+	
+	_buy(item.get_price(level))
 
 
 func click() -> void:

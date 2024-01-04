@@ -1,19 +1,24 @@
 keys,en,fr
 TITLE_SCREEN_TAGLINE,"In space, no one hears you click","Dans l'espace, personne ne vous entend cliquer"
-TITLE_SCREEN_INSTRUCTIONS_LABEL,Instructions,Instructions
-TITLE_SCREEN_INSTRUCTION_BLACK_HOLE,Click the black hole to extract Space Dols ($$),Clique sur le trou noir pour extraire des Spatiodollars ($$)
-TITLE_SCREEN_INSTRUCTION_DYING_STARS,Extract bonus Space Dols from dying stars,Extrais des Spatiodollars dans les astres mourrants
-TITLE_SCREEN_INSTRUCTION_PROFIT,PROFIT!,LE PROFIT !
-TITLE_SCREEN_START_BUTTON,START GAME,COMMENCER LA PARTIE
-UI.SCORE_LABEL,Space Dols,Spatiodollars
-UI.SCORE_PER_CLICK_LABEL,$$ per click,$$ par clic
-UI.APM_LABEL,Clicks per second," Clics par seconde"
-UI.ACTIVE_ITEMS_LABEL,Active items,Bonus actifs
-SHOP.TITLE,Shop,Boutique
-SHOP.SUBTITLE,Level {level},Niveau {level}
-ITEM.AUTOCLICKER.DISPLAY_NAME,Autoclicker 3000,Autoclicker 3000
-ITEM.AUTOCLICKER.DISPLAY_DESCRIPTION,Tired of clicking? Let the Autoclicker do the job!,Fatigué de cliquer ? Laisse l'autoclicker faire le boulot !
-ITEM.CLICK_BOOSTER.DISPLAY_NAME,Click Booster,Click Booster
-ITEM.CLICK_BOOSTER.DISPLAY_DESCRIPTION,Boost your clicks by {potency}$$.,Augmente tes clics de {potency}$$.
-ITEM.SHOP_IMPROVEMENT.DISPLAY_NAME,Improve Shop,Améliorer la boutique
-ITEM.SHOP_IMPROVEMENT.DISPLAY_DESCRIPTION,Get access to better items in the shop!,Accède à de meilleurs bonus dans la boutique !
+TITLE_SCREEN_INSTRUCTIONS_LABEL,"Instructions","Instructions"
+TITLE_SCREEN_INSTRUCTION_BLACK_HOLE,"Click the black hole to extract Space Dols ($$)","Clique sur le trou noir pour extraire des Spatiodollars ($$)"
+TITLE_SCREEN_INSTRUCTION_DYING_STARS,"Extract bonus Space Dols from dying stars","Extrais des Spatiodollars dans les astres mourrants"
+TITLE_SCREEN_INSTRUCTION_PROFIT,"PROFIT!","LE PROFIT !"
+TITLE_SCREEN_START_BUTTON,"START GAME","COMMENCER LA PARTIE"
+UI.SCORE_LABEL,"Space Dols","Spatiodollars"
+UI.SCORE_PER_CLICK_LABEL,"$$ per click","$$ par clic"
+UI.APM_LABEL,"Clicks per second","Clics par seconde"
+UI.ACTIVE_ITEMS_LABEL,"Active items","Bonus actifs"
+UI.ACTIVE_ITEM_LABEL,"{name} (lv. {level})","{name} (nv. {level})"
+SHOP.TITLE,"Shop","Boutique"
+SHOP.SUBTITLE,"Level {level}","Niveau {level}"
+ITEM.AUTOCLICKER.DISPLAY_NAME,"Autoclicker 3000","Autoclicker 3000"
+ITEM.AUTOCLICKER.DISPLAY_DESCRIPTION,"Tired of clicking? Let the Autoclicker do the job!","Fatigué de cliquer ? Laisse l'autoclicker faire le boulot !"
+ITEM.CLICK_BOOSTER.DISPLAY_NAME,"Click Booster","Click Booster"
+ITEM.CLICK_BOOSTER.DISPLAY_DESCRIPTION,"Boost your click efficiency by {potency}.","Augmente l'efficacité de tes clics de {potency}."
+ITEM.SHOP_IMPROVEMENT.DISPLAY_NAME,"Improve Shop","Améliorer la boutique"
+ITEM.SHOP_IMPROVEMENT.DISPLAY_DESCRIPTION,"Get access to better items in the shop.","Accède à de meilleurs bonus dans la boutique."
+ITEM.STAR_CATCHER.DISPLAY_NAME,"Star Catcher","Astrapeur"
+ITEM.STAR_CATCHER.DISPLAY_DESCRIPTION,"Orbits around the black hole to catch dying stars","En orbite autour du trou noir, récupère les astres mourrants"
+ITEM.STAR_CATCHER_LENGTH_INCREASE.DISPLAY_NAME,"Enlarge Star Catcher","Élargissement de l'Astrapeur"
+ITEM.STAR_CATCHER_LENGTH_INCREASE.DISPLAY_DESCRIPTION,"Increase the length of the Star Catcher for more star catching.","Augmente la largeur de l'Astrapeur pour plus d'astrapage."

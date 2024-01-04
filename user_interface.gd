@@ -5,10 +5,10 @@ extends PanelContainer
 @export var acceleration = 0: set = _set_acceleration
 @export var apm = 0.0: set = _set_apm
 @export var game_state: GameState
-
 var score_label_tween: Tween
 var acceleration_label_tween: Tween
 var label_tweens: Dictionary
+var permanent_item_labels: Dictionary
 @onready var acceleration_multiplier_gauge_steps = {
 	1: %AccelerationMultiplierGaugeStep1Label,
 	2: %AccelerationMultiplierGaugeStep2Label,
@@ -17,22 +17,9 @@ var label_tweens: Dictionary
 }
 
 
-func add_permanent_item(item: Item):
-	var _new_upgrade_label = Label.new()
-	_new_upgrade_label.text = item.display_name
-	_new_upgrade_label.theme_type_variation = "WithBackgroundLabel"
-	
-	for _upgrade_node in %PermanentUpgradesList.get_children():
-		if _new_upgrade_label.text < _upgrade_node.text:
-			_upgrade_node.add_sibling(_new_upgrade_label)
-			return
-	
-	%PermanentUpgradesList.add_child(_new_upgrade_label)
-
-
 func _ready():
 	game_state.acceleration_multiplier_changed.connect(_update_acceleration_multiplier)
-
+	game_state.permanent_item_changed.connect(_update_permanent_item)
 
 
 func _set_acceleration(value: int):
@@ -101,3 +88,12 @@ func _update_last_score_increase_label(score_delta: int):
 func _update_acceleration_multiplier(old_multiplier: int, new_multiplier: int) -> void:
 	acceleration_multiplier_gauge_steps[old_multiplier].theme_type_variation = "GaugeLevelStepInactiveLabel"
 	acceleration_multiplier_gauge_steps[new_multiplier].theme_type_variation = "GaugeLevelStepActiveLabel"
+
+
+func _update_permanent_item(item: Item, item_level: int) -> void:
+	if not item.code in permanent_item_labels:
+		permanent_item_labels[item.code] = Label.new()
+		permanent_item_labels[item.code].theme_type_variation = "WithBackgroundLabel"
+		%PermanentUpgradesList.add_child(permanent_item_labels[item.code])
+	
+	permanent_item_labels[item.code].text = tr("UI.ACTIVE_ITEM_LABEL").format({"name": tr(item.display_name), "level": item_level})

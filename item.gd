@@ -1,51 +1,55 @@
-extends Resource
 class_name Item
+extends Resource
 
-enum ItemEffect { NONE, ACCELERATION_BOOST, AUTOCLICK, SHOP_LEVEL_INCREASE }
 
-@export var code: String
+enum Code {
+	CLICK_BOOSTER,
+	SHOP_IMPROVEMENT,
+	AUTOCLICKER,
+	STAR_CATCHER,
+}
+
+@export var code: Code
 @export var display_name: String
 @export var display_description: String
-@export var repeatable: bool = true
-@export var effects: Array[ItemEffect]
+@export var is_repeatable: bool = false
 @export var potency_scale: Dictionary
 @export var price_scale: Dictionary
+@export var shop_level_requirement: Dictionary
 
 
-func get_price(level: int):
-	var _scale_index = _get_scale_index(level)
+func get_price(item_level: int) -> int:
+	if is_repeatable:
+		return price_scale[1] * item_level
 	
-	if _scale_index == null:
-		return null
+	if price_scale.has(item_level):
+		return price_scale[item_level]
+	
+	return -1
 
-	return price_scale[_scale_index]
 
-
-func get_potency(level: int):
+func get_potency(item_level: int) -> int:
 	if potency_scale == null or potency_scale.size() == 0:
-		return null
+		return -1
 	
-	var _scale_index = _get_scale_index(level)
+	if is_repeatable:
+		return potency_scale[1] * item_level
 	
-	if _scale_index == null:
-		return null
+	if potency_scale.has(item_level):
+		return potency_scale[item_level]
 	
-	return potency_scale[_scale_index]
+	return -1
 
 
-func get_min_level():
-	return price_scale.keys()[0]
+func get_min_shop_level() -> int:
+	return shop_level_requirement[1]
 
 
-func _get_scale_index(level: int):
-	if price_scale.has(level):
-		return level
+func get_required_shop_level(item_level: int) -> int:
+	if is_repeatable:
+		return get_min_shop_level()
 	
-	var _scale_index = null;
-	for _index in price_scale.keys():
-		if _index < level:
-			_scale_index = _index
-		else:
-			break
+	if shop_level_requirement.has(item_level):
+		return shop_level_requirement[item_level]
 	
-	return _scale_index
+	return -1

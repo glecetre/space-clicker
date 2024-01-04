@@ -1,31 +1,30 @@
-extends Node
 class_name Shop
-
-
-const ITEM_RESOURCES_FOLDER_PATH = "res://items"
-const ShopButtonScn = preload("res://scenes/shop_button.tscn")
+extends Node
 
 
 signal item_purchased(item: Item, level: int)
 
 
+const ITEM_RESOURCES_FOLDER_PATH = "res://items"
+const ShopButtonScn = preload("res://scenes/shop_button.tscn")
+#region Items list
 # Run shop_items_lister.gd to set this value
 # Not working: https://github.com/godotengine/godot/issues/72563
-@export var item_resource_files: Array[String] = ["res://items/click_booster.tres", "res://items/shop_improvement.tres", "res://items/autoclicker.tres"]
+const ITEM_RESOURCE_FILES = [
+	"res://items/click_booster.tres",
+	"res://items/shop_improvement.tres",
+	"res://items/autoclicker.tres",
+	"res://items/star_catcher.tres",
+]
+#endregion
 
-
+var catalog: Dictionary
+var purchased_items_levels: Dictionary
+var level: int = 0 # Increased when scene ready
+var current_credit := 0
 @onready var items_list := %ItemsList
 @onready var level_label := %LevelLabel
-var catalog: Dictionary
-var tree: Dictionary
-var one_time_purchases: Dictionary
-var level: int = 0
-var current_credit := 0
 
-
-func update_credit(credit: int) -> void:
-	current_credit = credit
-	_update_buttons()
 
 func _init():
 	_load_catalog()
@@ -35,54 +34,80 @@ func _ready():
 	_increase_level()
 
 
+func update_credit(credit: int) -> void:
+	current_credit = credit
+	_update_buttons()
+
+
 func _increase_level() -> void:
 	level += 1
 	level_label.text = tr("SHOP.SUBTITLE").format({"level" = level})
-	_unlock_level_items(level)
+	_reset_buttons()
 
 
 func _on_item_button_pressed(button: ShopButton) -> void:
-	if !button.item.repeatable:
-		one_time_purchases[button.item.code] = true
-		button.queue_free()
+	purchased_items_levels[button.item.code] = button.item_level
 	
-	if button.item.effects.has(Item.ItemEffect.SHOP_LEVEL_INCREASE):
+	if not button.item.is_repeatable:
+		button.queue_free()
+		_create_item_button_if_available(button.item)
+	
+	if button.item.code == Item.Code.SHOP_IMPROVEMENT:
 		_increase_level()
-		item_purchased.emit(button.item, level - 1)
-	else:
-		item_purchased.emit(button.item, level)
+	
+	item_purchased.emit(button.item, button.item_level)
 
 
 func _update_buttons() -> void:
-	for _button in items_list.get_children():
-		_button.disable(current_credit < _button.item.get_price(level))
-		_button.update_item_level(level)
+	for button in items_list.get_children():
+		button.disable(not _is_item_buyable(button.item))
 
 
-func _unlock_level_items(level_to_unlock: int) -> void:
-	if not tree.has(level_to_unlock):
-		return
+func _reset_buttons() -> void:
+	for item_button in items_list.get_children():
+		item_button.queue_free()
+	
+	for item_code in catalog:
+		_create_item_button_if_available(catalog[item_code])
+
+
+func _create_item_button_if_available(item: Item) -> void:
+	var purchased_item_level = _get_purchased_item_level(item)
+	var next_item_level = \
+		purchased_item_level + 1 if not item.is_repeatable \
+		else level
+	
+	var required_shop_level = item.get_required_shop_level(next_item_level)
 		
-	for item in tree[level_to_unlock]:
-		_create_item_button(item)
+	if required_shop_level >= 0 and level >= required_shop_level:
+		_create_item_button(item, next_item_level)
 
 
-func _create_item_button(item: Item) -> void:
+func _create_item_button(item: Item, item_level: int) -> void:
 	var _button = ShopButtonScn.instantiate()
 	_button.item = item
+	_button.item_level = item_level
+	
 	items_list.add_child(_button)
-	_button.disable(current_credit < item.get_price(level))
+	
+	_button.disable(not _is_item_buyable(item))
 	_button.pressed.connect(func(_item): _on_item_button_pressed(_button))
 
 
 func _load_catalog() -> void:
-	for item_resource_file in item_resource_files:
+	for item_resource_file in ITEM_RESOURCE_FILES:
 		var item = load(item_resource_file)
 		catalog[item.code] = item
-	
-		var _item_min_level = item.get_min_level()
-		if tree.has(_item_min_level):
-			tree[_item_min_level].append(item)
-		else:
-			tree[_item_min_level] = [item]
 
+
+func _is_item_buyable(item: Item) -> bool:
+	var item_level: int = _get_purchased_item_level(item) + 1
+	var required_shop_level = item.get_required_shop_level(item_level)
+	
+	return current_credit >= item.get_price(item_level) \
+		and required_shop_level >= 0 \
+		and required_shop_level <= level
+
+
+func _get_purchased_item_level(item: Item) -> int:
+	return purchased_items_levels[item.code] if item.code in purchased_items_levels else 0
