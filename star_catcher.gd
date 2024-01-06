@@ -31,25 +31,29 @@ func _process(delta: float) -> void:
 		rotation_degrees += rotation_speed * delta
 
 
-func _start_drawing(previous_to_angle_deg: float = 0) -> void:
+func _start_drawing(tween_change := false, previous_to_angle_deg: float = 0) -> void:
 	if not is_node_ready():
 		return
 	
 	if drawing_tween:
 		drawing_tween.kill()
 	
-	drawing_tween = create_tween() \
-		.set_trans(Tween.TRANS_QUART) \
-		.set_ease(Tween.EASE_OUT)
-	
-	drawing_tween.tween_method(
-		func(value: float): 
-			drawing_tween_value = value
-			queue_redraw(), 
-		previous_to_angle_deg,
-		to_angle_deg,
-		2
-	)
+	if not tween_change:
+		drawing_tween_value = to_angle_deg
+		queue_redraw()
+	else:
+		drawing_tween = create_tween() \
+			.set_trans(Tween.TRANS_QUART) \
+			.set_ease(Tween.EASE_OUT)
+		
+		drawing_tween.tween_method(
+			func(value: float): 
+				drawing_tween_value = value
+				queue_redraw(), 
+			previous_to_angle_deg,
+			to_angle_deg,
+			2
+		)
 
 
 func _get_polygon_points(to_angle_deg_override: float) -> PackedVector2Array:
@@ -95,7 +99,7 @@ func _set_from_angle_deg(value: float) -> void:
 func _set_to_angle_deg(value: float) -> void:
 	var previous_to_angle_deg = to_angle_deg
 	to_angle_deg = value
-	_start_drawing(previous_to_angle_deg)
+	_start_drawing(true, previous_to_angle_deg)
 
 
 func _set_rotation_speed(value: float) -> void:

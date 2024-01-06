@@ -36,8 +36,8 @@ func click() -> void:
 	score_changed.emit(score, acceleration)
 
 
-func loot(loot_value: float) -> int:
-	var _score_increment = roundi(loot_value * float(acceleration))
+func loot(loot_value: int) -> int:
+	var _score_increment = loot_value * acceleration
 	score += _score_increment
 	score_changed.emit(score, acceleration)
 	return _score_increment

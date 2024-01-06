@@ -3,35 +3,59 @@
 [ext_resource type="Script" path="res://user_interface.gd" id="1_ip4tv"]
 
 [node name="UserInterface" type="PanelContainer"]
-size_flags_horizontal = 2
-size_flags_vertical = 8
-theme_type_variation = &"BorderOnlyPanel"
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_type_variation = &"InvisiblePanelContainer"
 script = ExtResource("1_ip4tv")
 
 [node name="PopupTextLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LootFrenzyWarningLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_type_variation = &"MediumLabel"
+text = "UI.WARNING_LOOT_FRENZY_LABEL"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="GameStatsContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"BorderOnlyPanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/GameStatsContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 32
 
-[node name="CreditsStatsContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="CreditsStatsContainer" type="VBoxContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="ScoreContainer" type="VBoxContainer" parent="HBoxContainer/CreditsStatsContainer"]
+[node name="ScoreContainer" type="VBoxContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer"]
 layout_mode = 2
 theme_type_variation = &"CondensedVBoxContainer"
 
-[node name="ScoreTitleLabel" type="Label" parent="HBoxContainer/CreditsStatsContainer/ScoreContainer"]
+[node name="ScoreTitleLabel" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/ScoreContainer"]
 layout_mode = 2
 theme_type_variation = &"SubtitleLabel"
 text = "UI.SCORE_LABEL"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CreditsStatsContainer/ScoreContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/ScoreContainer"]
 layout_mode = 2
 
-[node name="ScoreLabel" type="Label" parent="HBoxContainer/CreditsStatsContainer/ScoreContainer/HBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/ScoreContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -39,25 +63,25 @@ theme_type_variation = &"LargeLabel"
 theme_override_font_sizes/font_size = 72
 text = "0"
 
-[node name="LastScoreIncreaseLabel" type="Label" parent="HBoxContainer/CreditsStatsContainer/ScoreContainer/HBoxContainer"]
+[node name="LastScoreIncreaseLabel" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/ScoreContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"MediumLabel"
 
-[node name="AccelerationContainer" type="VBoxContainer" parent="HBoxContainer/CreditsStatsContainer"]
+[node name="AccelerationContainer" type="VBoxContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer"]
 layout_mode = 2
 theme_type_variation = &"CondensedVBoxContainer"
 
-[node name="AccelerationTitleLabel" type="Label" parent="HBoxContainer/CreditsStatsContainer/AccelerationContainer"]
+[node name="AccelerationTitleLabel" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/AccelerationContainer"]
 layout_mode = 2
 theme_type_variation = &"SubtitleLabel"
 text = "UI.SCORE_PER_CLICK_LABEL"
 
-[node name="AccelerationGauge" type="HBoxContainer" parent="HBoxContainer/CreditsStatsContainer/AccelerationContainer"]
+[node name="AccelerationGauge" type="HBoxContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/AccelerationContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="AccelerationValueLabel" type="Label" parent="HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge"]
+[node name="AccelerationValueLabel" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -65,67 +89,67 @@ size_flags_vertical = 8
 theme_type_variation = &"GaugeValueLabel"
 text = "0"
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge"]
 layout_mode = 2
 theme_type_variation = &"GaugeLevelPanel"
 
-[node name="GaugeStepsContainer" type="HBoxContainer" parent="HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer"]
+[node name="GaugeStepsContainer" type="HBoxContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer"]
 layout_mode = 2
 
-[node name="AccelerationMultiplierGaugeStep1Label" type="Label" parent="HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer/GaugeStepsContainer"]
+[node name="AccelerationMultiplierGaugeStep1Label" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer/GaugeStepsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"GaugeLevelStepInactiveLabel"
 text = "x1"
 
-[node name="AccelerationMultiplierGaugeStep2Label" type="Label" parent="HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer/GaugeStepsContainer"]
+[node name="AccelerationMultiplierGaugeStep2Label" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer/GaugeStepsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"GaugeLevelStepInactiveLabel"
 text = "x2"
 
-[node name="AccelerationMultiplierGaugeStep3Label" type="Label" parent="HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer/GaugeStepsContainer"]
+[node name="AccelerationMultiplierGaugeStep3Label" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer/GaugeStepsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"GaugeLevelStepInactiveLabel"
 text = "x4"
 
-[node name="AccelerationMultiplierGaugeStep4Label" type="Label" parent="HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer/GaugeStepsContainer"]
+[node name="AccelerationMultiplierGaugeStep4Label" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/CreditsStatsContainer/AccelerationContainer/AccelerationGauge/PanelContainer/GaugeStepsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"GaugeLevelStepInactiveLabel"
 text = "x8"
 
-[node name="APMStatsContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="APMStatsContainer" type="VBoxContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 8
 
-[node name="APMContainer" type="VBoxContainer" parent="HBoxContainer/APMStatsContainer"]
+[node name="APMContainer" type="VBoxContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer/APMStatsContainer"]
 layout_mode = 2
 theme_type_variation = &"CondensedVBoxContainer"
 
-[node name="APMTitleLabel" type="Label" parent="HBoxContainer/APMStatsContainer/APMContainer"]
+[node name="APMTitleLabel" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/APMStatsContainer/APMContainer"]
 layout_mode = 2
 theme_type_variation = &"SubtitleLabel"
 text = "UI.APM_LABEL"
 
-[node name="APMLabel" type="Label" parent="HBoxContainer/APMStatsContainer/APMContainer"]
+[node name="APMLabel" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/APMStatsContainer/APMContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"LargeLabel"
 text = "0"
 
-[node name="ActiveItemsContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="ActiveItemsContainer" type="VBoxContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="HBoxContainer/ActiveItemsContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer/GameStatsContainer/HBoxContainer/ActiveItemsContainer"]
 layout_mode = 2
 theme_type_variation = &"SubtitleLabel"
 text = "UI.ACTIVE_ITEMS_LABEL"
 horizontal_alignment = 2
 
-[node name="PermanentUpgradesList" type="VFlowContainer" parent="HBoxContainer/ActiveItemsContainer"]
+[node name="PermanentUpgradesList" type="VFlowContainer" parent="VBoxContainer/GameStatsContainer/HBoxContainer/ActiveItemsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10

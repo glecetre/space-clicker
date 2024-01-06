@@ -15,6 +15,7 @@ const ITEM_RESOURCE_FILES = [
 	"res://items/shop_improvement.tres",
 	"res://items/autoclicker.tres",
 	"res://items/star_catcher.tres",
+	"res://items/star_field.tres"
 ]
 #endregion
 

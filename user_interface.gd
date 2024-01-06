@@ -4,11 +4,13 @@ extends PanelContainer
 @export var score = 0: set = _set_score
 @export var acceleration = 0: set = _set_acceleration
 @export var apm = 0.0: set = _set_apm
+@export var is_loot_frenzy := false: set = _set_loot_frenzy
 @export var game_state: GameState
 var score_label_tween: Tween
 var acceleration_label_tween: Tween
 var label_tweens: Dictionary
 var permanent_item_labels: Dictionary
+var warning_label_blink_tween: Tween
 @onready var acceleration_multiplier_gauge_steps = {
 	1: %AccelerationMultiplierGaugeStep1Label,
 	2: %AccelerationMultiplierGaugeStep2Label,
@@ -48,6 +50,13 @@ func _set_apm(value: float):
 	
 	apm = value
 	%APMLabel.text = str(apm)
+
+
+func _set_loot_frenzy(value: bool) -> void:
+	is_loot_frenzy = value
+	%LootFrenzyWarningLabel.visible = is_loot_frenzy
+	
+	_fade_warning_label(1 if is_loot_frenzy else -1, is_loot_frenzy)
 
 
 func _update_label_text(label: Label, from: Variant, to: Variant):
@@ -97,3 +106,16 @@ func _update_permanent_item(item: Item, item_level: int) -> void:
 		%PermanentUpgradesList.add_child(permanent_item_labels[item.code])
 	
 	permanent_item_labels[item.code].text = tr("UI.ACTIVE_ITEM_LABEL").format({"name": tr(item.display_name), "level": item_level})
+
+
+func _fade_warning_label(direction: int, is_looping := false) -> void:
+	if warning_label_blink_tween:
+		warning_label_blink_tween.kill()
+	
+	var alpha = 1.0 if direction >= 0 else 0.2
+	
+	warning_label_blink_tween = create_tween().set_trans(Tween.TRANS_QUART)
+	warning_label_blink_tween.tween_property(%LootFrenzyWarningLabel, "modulate", Color(%LootFrenzyWarningLabel.modulate, alpha), 1)
+	if is_looping:
+		warning_label_blink_tween.tween_callback(_fade_warning_label.bind(direction * -1, is_looping))
+

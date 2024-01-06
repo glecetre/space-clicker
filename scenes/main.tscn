@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bercl4qjns4w5"]
+[gd_scene load_steps=8 format=3 uid="uid://bercl4qjns4w5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_8rt3s"]
 [ext_resource type="Texture2D" uid="uid://rsb1ak47d31l" path="res://assets/background.png" id="2_26k67"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://xrdxackwanbj" path="res://scenes/shop.tscn" id="3_d8shh"]
 [ext_resource type="PackedScene" uid="uid://cw6r3ofpwqok0" path="res://scenes/clicker.tscn" id="5_o512s"]
 [ext_resource type="PackedScene" uid="uid://dthfilvysua6f" path="res://scenes/user_interface.tscn" id="5_sxgyx"]
-[ext_resource type="PackedScene" uid="uid://besjyut7qv84s" path="res://scenes/loot_item.tscn" id="6_6cput"]
 [ext_resource type="Script" path="res://loot_spawner.gd" id="7_3f64n"]
 
 [node name="Main" type="Node"]
@@ -32,15 +31,13 @@ grow_horizontal = 0
 
 [node name="UserInterface" parent="." node_paths=PackedStringArray("game_state") instance=ExtResource("5_sxgyx")]
 unique_name_in_owner = true
+z_index = 0
 anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = 24.0
 offset_top = -272.0
 offset_right = -408.0
 offset_bottom = -24.0
-grow_horizontal = 2
 grow_vertical = 0
 acceleration = 1
 game_state = NodePath("../GameState")
@@ -57,14 +54,17 @@ position = Vector2(24, 24)
 position = Vector2(1512, 784)
 
 [node name="LootSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_area_top_left", "spawn_area_bottom_right", "loot_end_position")]
+unique_name_in_owner = true
 script = ExtResource("7_3f64n")
-LootItemScn = ExtResource("6_6cput")
 spawn_area_top_left = NodePath("../LootSpawnArea/LootSpawnAreaTL")
 spawn_area_bottom_right = NodePath("../LootSpawnArea/LootSpawnAreaBR")
 loot_end_position = NodePath("../Clicker")
 
 [node name="SpawnTimer" type="Timer" parent="LootSpawner"]
 wait_time = 2.0
+one_shot = true
+
+[node name="FrenzyTimer" type="Timer" parent="LootSpawner"]
 one_shot = true
 
 [node name="GameState" type="Node" parent="."]
@@ -81,8 +81,10 @@ autostart = true
 [connection signal="area_collided" from="Clicker" to="." method="_on_clicker_area_collided"]
 [connection signal="clicked" from="Clicker" to="." method="_on_clicker_clicked"]
 [connection signal="scale_changed" from="Clicker" to="." method="_on_clicker_scale_changed"]
+[connection signal="frenzy_changed" from="LootSpawner" to="." method="_on_loot_spawner_frenzy_changed"]
 [connection signal="item_looted" from="LootSpawner" to="." method="_on_loot_spawner_item_looted"]
 [connection signal="timeout" from="LootSpawner/SpawnTimer" to="LootSpawner" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="LootSpawner/FrenzyTimer" to="LootSpawner" method="_on_frenzy_timer_timeout"]
 [connection signal="permanent_item_changed" from="GameState" to="." method="_on_game_state_permanent_item_changed"]
 [connection signal="score_changed" from="GameState" to="." method="_on_game_state_score_changed"]
 [connection signal="timeout" from="GameState/AutoclickTimer" to="GameState" method="click"]

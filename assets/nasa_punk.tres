@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://qfsfh1a54ewj"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://qfsfh1a54ewj"]
 
 [ext_resource type="FontFile" uid="uid://datdh2rljli1b" path="res://assets/fonts/diffusion-regular.ttf" id="2_m1d6i"]
 [ext_resource type="FontFile" uid="uid://e8jf1a6jbnwb" path="res://assets/fonts/Lambda-Regular.otf" id="3_x7ojr"]
@@ -98,6 +98,8 @@ border_width_top = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_akmv0"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wvej"]
 content_margin_left = 16.0
 content_margin_top = 16.0
@@ -168,6 +170,8 @@ GaugeValueLabel/font_sizes/font_size = 48
 GaugeValueLabel/fonts/font = ExtResource("3_x7ojr")
 GaugeValueLabel/styles/normal = SubResource("StyleBoxFlat_68gi1")
 HBoxContainer/constants/separation = 16
+InvisiblePanelContainer/base_type = &"PanelContainer"
+InvisiblePanelContainer/styles/panel = SubResource("StyleBoxEmpty_akmv0")
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("2_m1d6i")
 LargeLabel/base_type = &"Label"

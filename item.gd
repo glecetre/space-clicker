@@ -7,6 +7,7 @@ enum Code {
 	SHOP_IMPROVEMENT,
 	AUTOCLICKER,
 	STAR_CATCHER,
+	STAR_FIELD,
 }
 
 @export var code: Code

@@ -5,7 +5,7 @@ extends Area2D
 signal looted(item: LootItem)
 
 
-@export var loot_value: float = 0
+@export var loot_value: int = 0
 
 
 func _input_event(_viewport, event, _shape_idx):

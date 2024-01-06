@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://4fqnna5yjogn"]
+
+[ext_resource type="Script" path="res://item.gd" id="1_r6xt7"]
+
+[resource]
+script = ExtResource("1_r6xt7")
+code = 4
+display_name = "ITEM.STAR_FIELD.DISPLAY_NAME"
+display_description = "ITEM.STAR_FIELD.DISPLAY_DESCRIPTION"
+is_repeatable = false
+potency_scale = {}
+price_scale = {
+1: 150000
+}
+shop_level_requirement = {
+1: 10
+}

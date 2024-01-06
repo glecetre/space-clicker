@@ -39,6 +39,8 @@ func _on_game_state_score_changed(new_score: int, new_acceleration: int):
 func _on_game_state_permanent_item_changed(item: Item, level: int):
 	if item.code == Item.Code.STAR_CATCHER:
 		_update_star_catcher(item, level)
+	if item.code == Item.Code.STAR_FIELD:
+		%LootSpawner.is_frenzy_enabled = true
 
 
 func _on_shop_item_purchased(item: Item, level: int):
@@ -47,6 +49,10 @@ func _on_shop_item_purchased(item: Item, level: int):
 
 func _on_loot_spawner_item_looted(loot_item: LootItem):
 	_loot_item(loot_item)
+
+
+func _on_loot_spawner_frenzy_changed(is_frenzy: bool) -> void:
+	%UserInterface.is_loot_frenzy = is_frenzy
 
 
 func _on_star_catcher_loot_item_entered(item: LootItem) -> void:
@@ -98,3 +104,4 @@ func _update_star_catcher(item: Item, level: int) -> void:
 		add_child(star_catcher)
 	
 	star_catcher.to_angle_deg = item.get_potency(level)
+
