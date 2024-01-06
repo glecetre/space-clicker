@@ -91,10 +91,10 @@ func _update_star_catcher(item: Item, level: int) -> void:
 	if not star_catcher:
 		star_catcher = STAR_CATCHER_SCN.instantiate()
 		star_catcher.position = $Clicker.position
+		star_catcher.outer_radius = 260
+		star_catcher.inner_radius = 88
+		star_catcher.rotation_speed = 36
 		star_catcher.loot_item_entered.connect(_loot_item)
 		add_child(star_catcher)
 	
-	star_catcher.outer_radius = 260
-	star_catcher.inner_radius = 88
 	star_catcher.to_angle_deg = item.get_potency(level)
-	star_catcher.rotation_speed = 36
