@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm7fj13ftnbmu"
-path="res://.godot/imported/Ice.png-8e43e1effec5b8232bc4733b1fe4d739.ctex"
+uid="uid://cylacebvx1n6n"
+path="res://.godot/imported/star_green.png-3047a280acfbe19e5fc644546609ab26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/planets/Ice.png"
-dest_files=["res://.godot/imported/Ice.png-8e43e1effec5b8232bc4733b1fe4d739.ctex"]
+source_file="res://assets/planets/star_green.png"
+dest_files=["res://.godot/imported/star_green.png-3047a280acfbe19e5fc644546609ab26.ctex"]
 
 [params]
 

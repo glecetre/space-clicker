@@ -2,11 +2,11 @@ class_name LootSpawner
 extends Node
 
 
-const LOOT_ITEM_SCN = preload("res://scenes/loot_item.tscn")
-
-
 signal item_looted(item: LootItem)
 signal frenzy_changed(is_frenzy: bool)
+
+
+const LOOT_ITEM_SCN = preload("res://scenes/loot_item.tscn")
 
 
 @export_group("Spawn")
@@ -15,7 +15,6 @@ signal frenzy_changed(is_frenzy: bool)
 @export var spawn_area_bottom_right: Marker2D
 @export var loot_end_position: Node2D
 @export_group("Loot")
-@export var loot_value_range: Vector2i = Vector2i(2, 10)
 @export var loot_falling_duration: Vector2 = Vector2(2, 6)
 @export_group("Frenzy")
 @export var is_frenzy_enabled := false: set = _set_frenzy_enabled
@@ -106,7 +105,7 @@ func _spawn_falling_loot_item() -> void:
 	
 	var new_loot_item: LootItem = LOOT_ITEM_SCN.instantiate()
 	new_loot_item.position = starting_position
-	new_loot_item.loot_value = randi_range(loot_value_range.x, loot_value_range.y)
+	new_loot_item.value_color = _get_random_loot_color()
 	new_loot_item.looted.connect(_loot_item)
 	
 	var falling_duration = randf_range(loot_falling_duration.x, loot_falling_duration.y)
@@ -118,3 +117,25 @@ func _spawn_falling_loot_item() -> void:
 	
 	add_child(new_loot_item)
 
+
+func _get_random_loot_color() -> LootItem.ValueColor:
+	var random = randf()
+	
+	if random <= 0.4:
+		return LootItem.ValueColor.GREY
+	
+	if random <= 0.65:
+		return LootItem.ValueColor.GREEN
+	
+	if random <= 0.8:
+		return LootItem.ValueColor.BLUE
+	
+	if random <= 0.9:
+		return LootItem.ValueColor.PURPLE
+	
+	if random <= 0.975:
+		return LootItem.ValueColor.YELLOW
+	
+	return LootItem.ValueColor.RED
+	
+	

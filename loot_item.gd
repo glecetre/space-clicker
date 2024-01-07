@@ -5,7 +5,40 @@ extends Area2D
 signal looted(item: LootItem)
 
 
-@export var loot_value: int = 0
+enum ValueColor {
+	GREY,
+	GREEN,
+	BLUE,
+	PURPLE,
+	YELLOW,
+	RED,
+}
+
+
+const LOOT_COLOR_ANIMATION = {
+	ValueColor.GREY: "grey",
+	ValueColor.GREEN: "green",
+	ValueColor.BLUE: "blue",
+	ValueColor.PURPLE: "purple",
+	ValueColor.YELLOW: "yellow",
+	ValueColor.RED: "red",
+}
+const LOOT_COLOR_FACTOR = {
+	ValueColor.GREY: 2,
+	ValueColor.GREEN: 3,
+	ValueColor.BLUE: 4,
+	ValueColor.PURPLE: 6,
+	ValueColor.YELLOW: 7,
+	ValueColor.RED: 10,
+}
+
+
+@export var value_color: ValueColor = ValueColor.GREY
+
+
+func _ready() -> void:
+	rotation_degrees = randi_range(0, 359)
+	%LootItemSprite.play(LOOT_COLOR_ANIMATION[value_color])
 
 
 func _input_event(_viewport, event, _shape_idx):
@@ -18,3 +51,6 @@ func _input_event(_viewport, event, _shape_idx):
 func _on_click():
 	looted.emit(self)
 
+
+func get_value() -> int:
+	return LOOT_COLOR_FACTOR[value_color]

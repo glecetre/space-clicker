@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://sey874d3mmv1"]
+[gd_scene load_steps=7 format=3 uid="uid://sey874d3mmv1"]
 
 [ext_resource type="Script" path="res://title_screen.gd" id="1_i2jum"]
 [ext_resource type="Texture2D" uid="uid://cvnmc2q5omp7f" path="res://assets/title_background.png" id="1_nx7np"]
 [ext_resource type="FontFile" uid="uid://bimwa8abuk44" path="res://assets/fonts/Phased.otf" id="2_8u5qc"]
 [ext_resource type="Texture2D" uid="uid://dw88twtb863s4" path="res://assets/planets/Black_hole.png" id="4_vfwfa"]
-[ext_resource type="Texture2D" uid="uid://dm7fj13ftnbmu" path="res://assets/planets/Ice.png" id="5_adurr"]
+[ext_resource type="Texture2D" uid="uid://dpe4mbe8t40ij" path="res://assets/planets/star_grey.png" id="5_tvrf6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ky5j"]
+atlas = ExtResource("5_tvrf6")
+region = Rect2(0, 0, 64, 64)
 
 [node name="TitleScreen" type="Node"]
 script = ExtResource("1_i2jum")
@@ -73,61 +77,51 @@ uppercase = true
 [node name="MarginContainer" type="MarginContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 80
+columns = 3
 
-[node name="BlackHoleInstructions" type="VBoxContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="IllustrationTexture" type="TextureRect" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/BlackHoleInstructions"]
+[node name="BlackHoleIllustrationTexture" type="TextureRect" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 92)
 layout_mode = 2
 texture = ExtResource("4_vfwfa")
 stretch_mode = 5
 
-[node name="InstructionsLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/BlackHoleInstructions"]
-custom_minimum_size = Vector2(300, 2.08165e-12)
+[node name="StarsIllustrationTexture" type="TextureRect" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
-size_flags_vertical = 0
-text = "TITLE_SCREEN_INSTRUCTION_BLACK_HOLE"
-horizontal_alignment = 1
-autowrap_mode = 2
+texture = SubResource("AtlasTexture_3ky5j")
+stretch_mode = 3
 
-[node name="PlanetsInstructions" type="VBoxContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="IllustrationTexture" type="TextureRect" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/PlanetsInstructions"]
+[node name="ProfitIllustrationLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 92)
 layout_mode = 2
-texture = ExtResource("5_adurr")
-stretch_mode = 5
-
-[node name="InstructionsLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/PlanetsInstructions"]
-custom_minimum_size = Vector2(300, 2.08165e-12)
-layout_mode = 2
-size_flags_vertical = 0
-text = "TITLE_SCREEN_INSTRUCTION_DYING_STARS"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="ProfitInstructions" type="VBoxContainer" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="IllustrationLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/ProfitInstructions"]
-custom_minimum_size = Vector2(2.08165e-12, 92)
-layout_mode = 2
+size_flags_vertical = 1
 theme_type_variation = &"LargeLabel"
 theme_override_colors/font_color = Color(0.52549, 0.870588, 0.937255, 0.960784)
 text = "$$"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InstructionsLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/HBoxContainer/ProfitInstructions"]
+[node name="BlackHoleInstructionsLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(300, 2.08165e-12)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 2
+text = "TITLE_SCREEN_INSTRUCTION_BLACK_HOLE"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StarsInstructionsLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(300, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 2
+text = "TITLE_SCREEN_INSTRUCTION_DYING_STARS"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ProfitInstructionsLabel" type="Label" parent="BottomPartContainer/CenterContainer/VBoxContainer/InstructionsContainer/VBoxContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(300, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 2
 text = "TITLE_SCREEN_INSTRUCTION_PROFIT"
 horizontal_alignment = 1
 autowrap_mode = 2

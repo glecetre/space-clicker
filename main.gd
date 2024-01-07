@@ -79,7 +79,7 @@ func _show_popup_label(label: Label):
 
 
 func _loot_item(loot_item: LootItem) -> void:
-	var _score_increment = $GameState.loot(loot_item.loot_value)
+	var _score_increment = $GameState.loot(loot_item.get_value())
 	
 	var _label = Label.new()
 	_label.text = "+ %s $$" % _score_increment
